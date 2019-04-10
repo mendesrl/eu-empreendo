@@ -6,17 +6,18 @@
       <img src="https://scontent.fbsb12-1.fna.fbcdn.net/v/t1.0-9/56723965_368958720376812_5707339416951848960_n.jpg?_nc_cat=104&_nc_eui2=AeE_mcq420lCnwWNFbhwHfKGNk9ItpWoywBmhMGg5GHOvZ35ZunzERGNCSojA9Ts3_w89yu7JXt7ckKGlrItQEZreQjPrUYTfcPvsf1XZuN8-A&_nc_ht=scontent.fbsb12-1.fna&oh=b3b492b4ad7102d5ee98f194b58b0582&oe=5D38091A"
       width="200px">
 
-      <v-spacer></v-spacer>
-      <v-flex xs12 md3>
-      <v-text-field 
-      label="Buscador"
-      ></v-text-field>
+      <!-- Apenas um enfeite para o layout-->
+            <v-spacer></v-spacer>
+            <v-flex xs12 md3>
+            <v-text-field 
+            label="Buscador"
+            ></v-text-field>
 
-      </v-flex>
-      <v-btn icon>
-        <v-icon>search</v-icon>
-      </v-btn>
-      
+            </v-flex>
+            <v-btn icon>
+              <v-icon>search</v-icon>
+            </v-btn>
+      <!-- -->
       <div class="text-xs-center">
         <v-menu offset-y>
           <template v-slot:activator="{ on }" >
