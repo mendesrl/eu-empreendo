@@ -3,9 +3,9 @@
     <v-toolbar flat color="orange">
       <v-toolbar-title>Comunicados</v-toolbar-title>
       <v-divider
-        class="mx-2"
-        inset
-        vertical
+              class="mx-2"
+              inset
+              vertical
       ></v-divider>
       <v-spacer></v-spacer>
       <v-dialog v-model="dialog" max-width="500px">
@@ -27,37 +27,38 @@
                   <v-text-field v-model="itemEditado.descricao" label="Descrição"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6 md4>
-                  <v-menu 
-                    ref="menu"
-                    :close-on-content-click="false"
-                    :nudge-right="40"
-                    lazy
-                    transition="scale-transition"
-                    offset-y
-                    full-width
-                    min-width="290px"
+                  <v-menu
+                          ref="menu"
+                          :close-on-content-click="false"
+                          :nudge-right="40"
+                          lazy
+                          transition="scale-transition"
+                          offset-y
+                          full-width
+                          min-width="290px"
                   >
-                  <template v-slot:activator="{ on }">
-                    <v-text-field 
-                      color="orange"
-                      v-model="itemEditado.data"
-                      label="Data"
-                      prepend-icon="event"
-                      readonly
-                      v-on="on"
+                    <template v-slot:activator="{ on }">
+                      <v-text-field
+                              @blur="date = parseDate(itemEditado.data)"
+                              color="orange"
+                              v-model="itemEditado.data"
+                              label="Data"
+                              prepend-icon="event"
+                              readonly
+                              v-on="on"
                       ></v-text-field>
-                  </template>
-                  
-                  <v-date-picker  v-model="itemEditado.data" no-title scrollable color="orange">
-                    <v-spacer></v-spacer>
-                    <v-btn flat color="primary" @click="menu = false">Cancel</v-btn>
-                    <v-btn flat color="primary" @click="$refs.menu.save(itemEditado.data)">OK</v-btn>
-                  </v-date-picker>
-            </v-menu>
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </v-card-text>
+                    </template>
+
+                    <v-date-picker v-model="itemEditado.data" no-title scrollable color="orange">
+                      <v-spacer></v-spacer>
+                      <v-btn flat color="primary" @click="menu = false">Cancel</v-btn>
+                      <v-btn flat color="primary" @click="$refs.menu.save(itemEditado.data)">OK</v-btn>
+                    </v-date-picker>
+                  </v-menu>
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </v-card-text>
 
           <v-card-actions>
             <v-spacer></v-spacer>
@@ -67,29 +68,29 @@
         </v-card>
       </v-dialog>
     </v-toolbar>
-    <v-data-table 
-      :headers="headers"
-      :items="comunicado"
-       hide-actions
-      pagination.sync="pagination"
-      class="elevation-1"
+    <v-data-table
+            :headers="headers"
+            :items="comunicado"
+            hide-actions
+            pagination.sync="pagination"
+            class="elevation-1"
     >
       <template v-slot:items="props">
         <td>{{ props.item.id }}</td>
-        <td >{{ props.item.titulo }}</td>
-        <td >{{ props.item.descricao }}</td>
-        <td >{{ props.item.data }}</td>
+        <td>{{ props.item.titulo }}</td>
+        <td>{{ props.item.descricao }}</td>
+        <td>{{ props.item.data }}</td>
         <td>
           <v-icon
-            small
-            class="mr-2"
-            @click="editarItem(props.item)"
+                  small
+                  class="mr-2"
+                  @click="editarItem(props.item)"
           >
             edit
           </v-icon>
           <v-icon
-            small
-            @click="deletarItem(props.item)"
+                  small
+                  @click="deletarItem(props.item)"
           >
             delete
           </v-icon>
@@ -103,97 +104,97 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from 'vuex'
+
 export default {
-    data: () => ({
-      dialog: false,
-      headers: [
-        {
-          text: 'ID',
-          align: 'left',
-          sortable: true,
-          value: 'id'
-        },
-        { text: 'Titulo', value: 'titulo' ,sortable: false},
-        { text: 'Descrição', value: 'descricao', sortable: false},
-        { text: 'Data', value: 'data', sortable: false },
-        { text: 'Ações', value: 'name', sortable: false }
-      ],
-      comunicado: [],
-      editedIndex: -1,
-      itemEditado: {
-        titulo: '',
-        descricao: '',
-        data: ''
+  data: () => ({
+    dialog: false,
+    headers: [
+      {
+        text: 'ID',
+        align: 'left',
+        sortable: true,
+        value: 'id'
       },
-      defaultItem: {
-        titulo: '',
-        descricao: '',
-        data: ''
-      }
-    }),
-
-    computed: {
-         ...mapGetters([
-        'getComunicados'
-      ]),
-      formTitle () {
-        return this.editedIndex === -1 ? 'Novo Comunicado' : 'Editar Comunicado'
-        
-      }
-      
-      
+      {text: 'Titulo', value: 'titulo', sortable: false},
+      {text: 'Descrição', value: 'descricao', sortable: false},
+      {text: 'Data', value: 'data', sortable: false},
+      {text: 'Ações', value: 'name', sortable: false}
+    ],
+    comunicado: [],
+    editedIndex: -1,
+    itemEditado: {
+      titulo: '',
+      descricao: '',
+      data: ''
     },
+    defaultItem: {
+      titulo: '',
+      descricao: '',
+      data: ''
+    }
+  }),
 
-    watch: {
-      dialog (val) {
-        val || this.fechar()
+  computed: {
+    ...mapGetters([
+      'getComunicados'
+    ]),
+    formTitle () {
+      return this.editedIndex === -1 ? 'Novo Comunicado' : 'Editar Comunicado'
+    }
+  },
+
+  watch: {
+    dialog (val) {
+      val || this.fechar()
+    }
+  },
+
+  created () {
+    this.initialize()
+  },
+
+  methods: {
+    initialize () {
+      for (let i = 0; i < this.getComunicados.length; i++) {
+        this.comunicado.push(this.getComunicados[i])
       }
     },
-
-    created () {
-      this.initialize()
+    
+    editarItem (item) {
+      this.editedIndex = this.comunicado.indexOf(item)
+      this.itemEditado = Object.assign({}, item)
+      this.dialog = true
     },
-
-    methods: {
-      initialize () {
-          for(var i=0; i<this.getComunicados.length; i++) {
-            this.comunicado.push (this.getComunicados[i]);
-            
-            }
-        },
-
-      editarItem (item) {
-        this.editedIndex = this.comunicado.indexOf(item)
-        this.itemEditado = Object.assign({}, item)
-        this.dialog = true
-      },
-
-      deletarItem (item) {
-        const index = this.comunicado.indexOf(item)
-        confirm('Tem certeza que deseja deletar esse item?') && this.comunicado.splice(index, 1)
-      },
-
-      fechar () {
-        this.dialog = false
-        setTimeout(() => {
-          this.itemEditado = Object.assign({}, this.defaultItem)
-          this.editedIndex = -1
-        }, 300)
-      },
-
-      salvar () {
-        if (this.editedIndex > -1) {
-          Object.assign(this.comunicado[this.editedIndex], this.itemEditado)
-          
-        } else {
-          this.comunicado.push(this.itemEditado)
-          this.itemEditado.id = this.comunicado.length;
-          
-          
-        }
-        this.fechar()
+    
+    deletarItem (item) {
+      const index = this.comunicado.indexOf(item)
+      confirm('Tem certeza que deseja deletar esse item?') && this.comunicado.splice(index, 1)
+    },
+    
+    fechar () {
+      this.dialog = false
+      setTimeout(() => {
+        this.itemEditado = Object.assign({}, this.defaultItem)
+        this.editedIndex = -1
+      }, 300)
+    },
+    
+    randomId (item1) {
+      let newId
+      let tamanhoItem = item1.length
+      newId = item1[tamanhoItem - 1].id
+      return newId + 1
+    },
+    
+    salvar () {
+      if (this.editedIndex > -1) {
+        return Object.assign(this.comunicado[this.editedIndex], this.itemEditado)
       }
+      this.itemEditado.id = this.randomId(this.comunicado)
+      this.comunicado.push(this.itemEditado)
+      this.fechar()
     }
   }
+}
 </script>
