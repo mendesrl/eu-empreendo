@@ -1,0 +1,12 @@
+[
+    {   
+        "id": 1,
+        "nome": "Aluno",
+        "imagem": "http://download.seaicons.com/download/i52488/custom-icon-design/pretty-office-8/custom-icon-design-pretty-office-8-user-yellow.ico"
+    },
+    {
+        "id": 2,
+        "nome": "Professor",
+        "imagem": "http://download.seaicons.com/download/i52488/custom-icon-design/pretty-office-8/custom-icon-design-pretty-office-8-user-yellow.ico"
+    }
+]

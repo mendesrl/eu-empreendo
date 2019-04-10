@@ -1,0 +1,20 @@
+[
+    {   
+        "id": 1,
+        "titulo": "Comunicado 1",
+        "descricao": "Descrição 1",
+        "data": "16-09-19"
+    },
+    {
+        "id": 2,
+        "titulo": "Comunicado 2",
+        "descricao": "Descrição 2",
+        "data": "16-09-19"
+    },
+    {
+        "id": 3,
+        "titulo": "Comunicado 3",
+        "descricao": "Descrição 3",
+        "data": "16-09-19"
+    }
+]
