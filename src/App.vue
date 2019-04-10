@@ -1,52 +1,46 @@
 <template>
   <v-app>
-  <v-toolbar color="white"  v-if=" getUsuario.nome != undefined" >
+    <v-toolbar color="white"  v-if=" getUsuario.nome != undefined" >
+      <img src="https://scontent.fbsb12-1.fna.fbcdn.net/v/t1.0-9/39891376_992316040952435_4843759430895927296_n.png?_nc_cat=101&_nc_eui2=AeFVX6g9Dt6lNdhfUcYedyw9vaEvmJd6MXEE9-JnLh2sStuV1U7Xp1ovzSQV-5chCAjBDTLGMzrcBRMSUtkWq6Fj0aEtc_A3YKUkQsMAmiFA1A&_nc_ht=scontent.fbsb12-1.fna&oh=8596c56ab1d2299013131232ea11c892&oe=5D061E06"
+      width="50px">
+      <img src="https://scontent.fbsb12-1.fna.fbcdn.net/v/t1.0-9/56723965_368958720376812_5707339416951848960_n.jpg?_nc_cat=104&_nc_eui2=AeE_mcq420lCnwWNFbhwHfKGNk9ItpWoywBmhMGg5GHOvZ35ZunzERGNCSojA9Ts3_w89yu7JXt7ckKGlrItQEZreQjPrUYTfcPvsf1XZuN8-A&_nc_ht=scontent.fbsb12-1.fna&oh=b3b492b4ad7102d5ee98f194b58b0582&oe=5D38091A"
+      width="200px">
 
-     <img
-                    src="https://scontent.fbsb12-1.fna.fbcdn.net/v/t1.0-9/39891376_992316040952435_4843759430895927296_n.png?_nc_cat=101&_nc_eui2=AeFVX6g9Dt6lNdhfUcYedyw9vaEvmJd6MXEE9-JnLh2sStuV1U7Xp1ovzSQV-5chCAjBDTLGMzrcBRMSUtkWq6Fj0aEtc_A3YKUkQsMAmiFA1A&_nc_ht=scontent.fbsb12-1.fna&oh=8596c56ab1d2299013131232ea11c892&oe=5D061E06"
-                    width="50px">
+      <v-spacer></v-spacer>
+      <v-flex xs12 md3>
+      <v-text-field 
+      label="Buscador"
+      ></v-text-field>
 
-   <img
-                    src="https://scontent.fbsb12-1.fna.fbcdn.net/v/t1.0-9/56403728_368797673726250_4690519099468414976_n.jpg?_nc_cat=107&_nc_eui2=AeEhR8_f80kn21g2zz3DPeJqjN1o46RLComTpxHDNgJUsjoxyTyC3H4muUE_x8cTRarWp9rMFG9hLMGG1TiSvUqIe911oHrLZHmNNmz_pLKOlw&_nc_ht=scontent.fbsb12-1.fna&oh=78db02891b34b703759f74895ada9ac4&oe=5D31F017"
-                    width="200px">
-
-    <v-spacer></v-spacer>
-    <v-flex xs12 md3>
-    <v-text-field 
-    label="Buscador"
-    ></v-text-field>
-
-        </v-flex>
-    <v-btn icon>
-      <v-icon>search</v-icon>
-    </v-btn>
-  
-    <div class="text-xs-center">
-    <v-menu offset-y>
-      <template v-slot:activator="{ on }" >
-        <img v-on="on" :src="getUsuario.imagem"  class="imagem-usuario" >
-      </template>
-      <v-list>
-          <v-list-tile
-              v-for="(usuario, index) in getListaUsuarios.filter(function(usuario) { return usuario.nome != getUsuario.nome; })"
-              :key="index"
-              @click="alterarUsuario(usuario)"
-              >
+      </v-flex>
+      <v-btn icon>
+        <v-icon>search</v-icon>
+      </v-btn>
+      
+      <div class="text-xs-center">
+        <v-menu offset-y>
+          <template v-slot:activator="{ on }" >
+            <img v-on="on" :src="getUsuario.imagem"  class="imagem-usuario" >
+          </template>
+          <v-list>
+              <v-list-tile
+                v-for="(usuario, index) in getListaUsuarios.filter(function(usuario) { return usuario.nome != getUsuario.nome; })"
+                :key="index"
+                @click="alterarUsuario(usuario)"
+                >
+                          
                 <v-list-tile-title class="menu" >
-                    <img :src="usuario.imagem" class="mini-menu">{{ usuario.nome }}
-                </v-list-tile-title>
-                            
-          </v-list-tile>
-                              
-          <v-list-tile @click="sair()">
-
+                  <img :src="usuario.imagem" class="mini-menu">{{ usuario.nome }}
+                </v-list-tile-title>                 
+              </v-list-tile>
+              
+              <v-list-tile @click="sair()">
                 <v-list-tile-title>Sair</v-list-tile-title>
-                    
-          </v-list-tile>
-      </v-list>
+              </v-list-tile>
+        </v-list>
     </v-menu>
   </div>
-  </v-toolbar>
+</v-toolbar>
     
     <router-view></router-view>
     
@@ -82,24 +76,6 @@
           </v-list-tile-action>
         </v-list-tile>
       </v-list>
-
-      <v-list class="pt-0" dense>
-        <v-divider light></v-divider>
-
-        <v-list-tile
-          v-for="item in items"
-          :key="item.title"
-          
-        >
-          <v-list-tile-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-tile-action>
-
-          <v-list-tile-content>
-            <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
     </v-navigation-drawer>
   </v-app>
 </template>
@@ -111,11 +87,6 @@ export default {
   data () {
     return {
     drawer: null,
-    items: [
-    { title: 'Home', icon: 'home' },
-    { title: 'Categorias', icon: 'style' },
-    { title: 'Vídeo', icon: 'movie_creation' }
-    ],
     mini: false,
     right: null
     }
@@ -161,8 +132,7 @@ export default {
   justify-content: space-evelyn;
 }
 
-body
-{
+body{
   height: 1000px;
 }
 
